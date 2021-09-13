@@ -1,0 +1,12 @@
+.masthead {
+    height: 80vh;
+    min-height: 500px;
+    background-image: url('http://localhost:3000/images/teddy_5.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+.titre{
+    opacity: 75%;
+    color: beige;
+}
