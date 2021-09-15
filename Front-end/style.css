@@ -10,3 +10,28 @@
     opacity: 75%;
     color: beige;
 }
+.btn {
+  -webkit-transition: 0.5s ease;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+.btn.btn-primary {
+  font-size: 16px; 
+  border: 2px solid #f7941d; 
+  background:transparent;
+  padding:15px 40px; 
+  text-transform:uppercase;
+  border-radius:30px;
+  color:#f7941d;
+}
+
+.btn.btn-primary:hover {
+   background:#ffb153;
+   border: 2px solid #ffb153;
+   color:white;
+}
+.imageCard{
+  object-fit: cover;
+}
