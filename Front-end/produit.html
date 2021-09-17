@@ -13,18 +13,19 @@
     </head>
 
     <body>
-    
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+
+        <header>
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
                 <div class="container">
-                    <a class="navbar-brand" href="#">Orinoco</a>
+                    <a class="navbar-brand" href="index.html">Orinoco</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item active">
-                        <a class="nav-link" href="#">Accueil</a>
+                        <a class="nav-link" href="index.html">Accueil</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="#">Produits</a>
@@ -35,45 +36,41 @@
                     </ul>
                     </div>
                 </div>
-        </nav>
-
-        <!-- Full Page Image Header with Vertically Centered Content -->
-        <header class="masthead">
-                    <div class="container h-100">
-                    <div class="row mt-15 h-100 align-items-center">
-                        <div class="titre col-4 bg-dark bg-gradient">
-                        <h1 class="fw-light">Orinoco</h1>
-                        <p class="lead">Des ours en peluche faits à la main</p>
-                        </div>
-                    </div>
-                    </div>
+            </nav>
         </header>
-        
 
         <main>
+
             <!-- Page Content -->
-            <div id="container">
-             
-           
-            <!-- Page Heading -->
-            <h2 class="my-4 px-2 col-4 titre bg-dark bg-gradient fw-light">Nos Produits</h2>
+            <div class="container">
+                <!-- Portfolio Item Heading -->
+                <h1 class="my-4" id="titre"></h1>
 
-            <div class="row" id="row">
-                
+                <!-- Portfolio Item Row -->
+                <div class="row">
 
-              </div>
+                    <div class="col-md-8">
+                    <img class="img-fluid" src="" alt="" id="image">
+                    </div>
+
+                    <div class="col-md-4">
+                    <h3 class="my-3" id="nomProduit"></h3>
+                    <p id="description"></p>
+                    <h3 class="my-3">Coloris</h3>
+                    <ul id="listeUl">
+                        
+                    </ul>
+                    <h3 class="my-3">Prix</h3>
+                    <p id="prix"></p>
+                    </div>
+
+                </div>
+                <!-- /.row -->
+              
             </div>
-            <footer>
-          
-            </footer>
-             
+
         </main>
-
-        <!--CODE JS-->
-        <script src="accueil.js"></script>
-
-        <!--BOOSTRAP Bundle with Popper-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        
+         <!--CODE JS-->
+         <script src="produit.js"></script>
     </body>
-
-</html>
