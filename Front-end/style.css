@@ -35,3 +35,11 @@
 .imageCard{
   object-fit: cover;
 }
+#panier{
+  background-color:#f7941d; 
+  border-radius: 10px; 
+  height: 2em;
+  display: flex;
+  align-items: center;
+  margin-top: 0.2em;
+}

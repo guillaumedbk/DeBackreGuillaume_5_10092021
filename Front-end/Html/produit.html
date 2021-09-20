@@ -5,9 +5,11 @@
         <meta charset="utf-8"/>
         <title>Orinoco</title>
         <!-- Lier la page css-->
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../style.css">
         <!--Déclaration du viewport-->
         <meta name="viewport" content="width=device-width">
+         <!-- Pour les icons-->
+         <script src="https://kit.fontawesome.com/5df1daaa8f.js" crossorigin="anonymous"></script>
         <!--Bootstrap5-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
@@ -23,17 +25,18 @@
                     <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Produits</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                        </li>
-                    </ul>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item active">
+                            <a class="nav-link" href="#">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="#">Produits</a>
+                            </li>
+            
+                            <li class="nav-item" id="panier">
+                                <a class="nav-link" href="panier.html">Panier <i class="fas fa-shopping-cart"></i><span> 0</span> </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>
@@ -62,8 +65,9 @@
                     </ul>
                     <h3 class="my-3">Prix</h3>
                     <p id="prix"></p>
+                    <button type="button" class="btn btn-primary" onclick="setData()">Ajouter au panier</button>
                     </div>
-
+                   
                 </div>
                 <!-- /.row -->
               
@@ -72,5 +76,6 @@
         </main>
         
          <!--CODE JS-->
-         <script src="produit.js"></script>
+         <script src="../Js/produit.js"></script>
+         <script src="../Js/panier.js"></script>
     </body>

@@ -21,14 +21,14 @@ fetch("http://localhost:3000/api/teddies")
                     container.innerHTML += `
                     <div class="col-lg-4 col-sm-6 mb-4">       
                     <div class="card h-100">
-                        <a href="http://127.0.0.1:5500/Front-end/produit.html?id=${idDuProduit}" ><img class="card-img-top" id="imageCard" src="${imageProduit}" alt=""></a>
+                        <a href="http://127.0.0.1:5500/Front-end/Html/produit.html?id=${idDuProduit}" ><img class="card-img-top" id="imageCard" src="${imageProduit}" alt=""></a>
                             <div class="card-body">
                                 <h4 class="card-title">
                                     <a href="#" id="titre">${nomProduit}</a>
                                 </h4>
                                 <p class="card-text description" id="description">${descriptionProduit}</p>
                                 <p class="card-text price" id="price">${prixProduit}€</p>
-                                <button type="button" class="btn btn-primary">Ajouter au panier</button>
+                                
                             </div>
                     </div>
                     </div>
