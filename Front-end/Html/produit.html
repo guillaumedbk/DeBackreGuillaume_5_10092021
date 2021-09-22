@@ -34,7 +34,7 @@
                             </li>
             
                             <li class="nav-item" id="panier">
-                                <a class="nav-link" href="panier.html">Panier <i class="fas fa-shopping-cart"></i><span> 0</span> </a>
+                                <a class="nav-link" href="panier.html">Panier <i class="fas fa-shopping-cart"></i><span id="span_panier"> 0</span> </a>
                             </li>
                         </ul>
                     </div>
@@ -65,7 +65,7 @@
                     </ul>
                     <h3 class="my-3">Prix</h3>
                     <p id="prix"></p>
-                    <button type="button" class="btn btn-primary" onclick="setData()">Ajouter au panier</button>
+                    <button type="button" class="btn btn-primary" id ="ajout_panier">Ajouter au panier</button>
                     </div>
                    
                 </div>
@@ -76,6 +76,8 @@
         </main>
         
          <!--CODE JS-->
+         <script src="../Js/fonctions.js"></script>
          <script src="../Js/produit.js"></script>
          <script src="../Js/panier.js"></script>
+       
     </body>
