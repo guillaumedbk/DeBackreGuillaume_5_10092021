@@ -51,9 +51,11 @@ fetch("http://localhost:3000/api/teddies")
         }
     })
     .then(function(data) {
+console.log(data)
 
+        //Quantité de produits
         for (produits of monPanier){
-            console.log(produits)
+        
             if(produits == articlesNorbert){
                 lesArticlesNorbert++;
             }
@@ -70,30 +72,89 @@ fetch("http://localhost:3000/api/teddies")
                 lesArticlesGarfunkel++;
             }
         }
+        
+        //////////////AFFICHER LE RECAPITULATIF DE COMMANDE/////////////////
+        let containerPanier = document.getElementById('container_panier');
+        let totalDuPanier = document.getElementById('total_panier');
+
+    let totalNorbert = lesArticlesNorbert*29;
+    let totalArnold = lesArticlesArnold*39;
+    let totalLenny = lesArticlesLenny*59;
+    let totalGustav = lesArticlesGustav*45;
+    let totalGarfunkel = lesArticlesGarfunkel*55;
+
+    let totalPanier =0;
+
+        if(lesArticlesNorbert > 0){
+            totalPanier += totalNorbert;
+            containerPanier.innerHTML += `
+         
+            <tr class="table-light"> 
+                <td>Ours Norbert : </td>
+                <td>${lesArticlesNorbert} </td>
+                <td>${totalNorbert}€</td>
+            </tr>
+           `
+        
+        }
+        if(lesArticlesArnold > 0){
+            totalPanier += totalArnold;
+            containerPanier.innerHTML += `
+           
+           <tr class="table-light"> 
+                <td>Ours Arnold : </td>
+                <td>${lesArticlesArnold} </td>
+                <td>${totalArnold}€</td>
+            </tr>
+           `
+        }
+        if(lesArticlesLenny > 0){
+            totalPanier += totalLenny;
+            containerPanier.innerHTML += `
+           
+           <tr class="table-light"> 
+                <td>Ours Lenny : </td>
+                <td>${lesArticlesLenny} </td>
+                <td>${totalLenny}€</td>
+            </tr>
+           `
+        
+        }
+        if(lesArticlesGustav > 0){
+            totalPanier += totalGustav;
+            containerPanier.innerHTML += `
+           
+           <tr class="table-light"> 
+                <td>Ours Gustav : </td>
+                <td>${lesArticlesGustav} </td>
+                <td>${totalGustav}€</td>
+            </tr>
+           `
+        }
+        if(lesArticlesGarfunkel > 0){
+            totalPanier += totalGarfunkel;
+            containerPanier.innerHTML += `
+           
+           <tr class="table-light"> 
+                <td>Ours Garfunkel: </td>
+                <td>${lesArticlesGarfunkel} </td>
+                <td>${totalGarfunkel}€</td>
+            </tr>
+           `
+        }
+        totalDuPanier.innerHTML=`
+        <tr class="table-success"> 
+            <td>Prix total : </td>
+            <td></td>
+            <td>${totalPanier}€</td>
+        </tr>
+        `
     });   
 
 
 
 
-    //////////////AFFICHER LE RECAPITULATIF DE COMMANDE/////////////////
-let containerPanier = document.getElementById('container_panier');
-containerPanier.innerHTML += `
-        <h1>Voici le récapitulatif de votre commande : </h1>
 
-        <table>
-            <tr>
-                <th>Produit</th>
-                <th>Quantité</th>
-                <th>Prix</th>
-            </tr>
 
-            <tr> 
-                <td>Ours Norbert : </td>
-                <td>${lesArticlesNorbert} </td>
-                <td>*${lesArticlesNorbert} </td>
-            </tr>
 
-        </table>
-
-`
 

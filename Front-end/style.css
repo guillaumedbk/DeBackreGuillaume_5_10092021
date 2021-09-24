@@ -43,3 +43,10 @@
   align-items: center;
   margin-top: 0.2em;
 }
+table{
+  border-collapse: collapse;
+  table-layout: auto;
+
+  border: 1px solid orange;
+ 
+}
