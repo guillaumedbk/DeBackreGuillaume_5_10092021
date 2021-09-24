@@ -1,7 +1,6 @@
 const idDuProduit = getArticleId();
 const urlProduit = "http://localhost:3000/api/teddies".concat('/', idDuProduit);
 let panier = localStorage.getItem("panierClient");
-console.log(panier)
 
 function getArticleId(){
     return new URL(location.href).searchParams.get("id");
@@ -15,8 +14,6 @@ function getArticle(){
        }
    })
    .then(function(data) {
-       console.log("pdt", data);
-
        //AJOUT AU PANIER
        bouton.addEventListener('click', () => {
         let initPanier = JSON.parse(localStorage.getItem("panierClient"));
@@ -24,7 +21,7 @@ function getArticle(){
         //Vérifier si le panier existe déjà
         if(localStorage.getItem('panierClient')){
             //Pousser les éléments dans le tableau initPanier qui comprend tous les produits
-            initPanier.push(data);
+            initPanier.push(data._id);
             localStorage.setItem("panierClient", JSON.stringify(initPanier));
         //Si il n'existe pas, initialisation du panier
         }else{
@@ -60,3 +57,36 @@ function getArticle(){
 }
 
 getArticle(idDuProduit);
+
+
+//NOMBRE D'AJOUT AU PANIER
+let bouton = document.querySelector('#ajout_panier');
+
+bouton.addEventListener('click', () => {
+    nombrePanier();
+})
+function nombrePanier(produit){
+    
+    let produitSession = localStorage.getItem('nombrePanier');
+    localStorage.setItem('nombrePanier', 1);
+    produitSession = parseInt(produitSession);
+    
+    if(produitSession){
+        localStorage.setItem('nombrePanier', produitSession + 1);
+        document.querySelector('#span_panier').textContent = produitSession + 1;
+    }else{
+        localStorage.setItem('nombreProduits', 1);
+        document.querySelector('#span_panier').textContent= 1;
+    } 
+  
+}
+//Empecher la réiniatialisation du nombre de pdts dans le panier au chargement
+function auChargement(){
+    let produitSession = localStorage.getItem('nombrePanier');
+
+    if(produitSession){
+        document.querySelector('#span_panier').textContent = produitSession;
+        
+    }
+}
+auChargement();
