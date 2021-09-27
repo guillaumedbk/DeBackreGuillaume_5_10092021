@@ -18,11 +18,20 @@ function getArticle(){
        bouton.addEventListener('click', () => {
         let initPanier = JSON.parse(localStorage.getItem("panierClient"));
 
+      
+        let idPanier = JSON.parse(localStorage.getItem(data._id))
         //Vérifier si le panier existe déjà
         if(localStorage.getItem('panierClient')){
             //Pousser les éléments dans le tableau initPanier qui comprend tous les produits
             initPanier.push(data._id);
             localStorage.setItem("panierClient", JSON.stringify(initPanier));
+
+            /*
+            let id = localStorage.getItem(data._id);
+            id++;
+            localStorage.setItem(data._id, id)
+          */
+          
         //Si il n'existe pas, initialisation du panier
         }else{
             //Tableau qui comprendra tous les objets
@@ -31,7 +40,6 @@ function getArticle(){
         }
        })
        
-        
        let nomProduit = data.name;
        let descriptionProduit = data.description;
        let imageProduit = data.imageUrl;
@@ -46,9 +54,6 @@ function getArticle(){
         for(let colori of data.colors){
             document.getElementById('listeUl').innerHTML += ` <li>${colori}</li>  `
            }
-        
-        
-     
        
    })
    .catch(function(err) {

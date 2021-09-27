@@ -12,7 +12,6 @@ function nombrePanier(produit){
         localStorage.setItem('nombreProduits', 1);
         document.querySelector('#span_panier').textContent= 1;
     } 
-  
 }
 //Empecher la réiniatialisation du nombre de pdts dans le panier au chargement
 function auChargement(){
@@ -90,8 +89,9 @@ console.log(data)
             containerPanier.innerHTML += `
          
             <tr class="table-light"> 
+                <td> <button class="remove btn btn-danger" type="button"><i class="fas fa-minus-circle"></i></button></td>
                 <td>Ours Norbert : </td>
-                <td>${lesArticlesNorbert} </td>
+                <td><input type="number">${lesArticlesNorbert}</input></td>
                 <td>${totalNorbert}€</td>
             </tr>
            `
@@ -102,17 +102,20 @@ console.log(data)
             containerPanier.innerHTML += `
            
            <tr class="table-light"> 
+                <td> <button id="remove" class="remove btn btn-danger" type="button"><i class="fas fa-minus-circle"></i></button></td>
                 <td>Ours Arnold : </td>
-                <td>${lesArticlesArnold} </td>
+                <td><input type="number" value="${lesArticlesArnold}" class="changeArnold"></input></td>
                 <td>${totalArnold}€</td>
             </tr>
            `
+           
         }
         if(lesArticlesLenny > 0){
             totalPanier += totalLenny;
             containerPanier.innerHTML += `
            
            <tr class="table-light"> 
+                <td> <button class="remove btn btn-danger" type="button"><i class="fas fa-minus-circle"></i></button></td>
                 <td>Ours Lenny : </td>
                 <td>${lesArticlesLenny} </td>
                 <td>${totalLenny}€</td>
@@ -125,6 +128,7 @@ console.log(data)
             containerPanier.innerHTML += `
            
            <tr class="table-light"> 
+                <td> <button class="remove btn btn-danger" type="button"><i class="fas fa-minus-circle"></i></button></td>
                 <td>Ours Gustav : </td>
                 <td>${lesArticlesGustav} </td>
                 <td>${totalGustav}€</td>
@@ -136,6 +140,7 @@ console.log(data)
             containerPanier.innerHTML += `
            
            <tr class="table-light"> 
+                <td> <button class="remove btn btn-danger" type="button"><i class="fas fa-minus-circle"></i></button></td>
                 <td>Ours Garfunkel: </td>
                 <td>${lesArticlesGarfunkel} </td>
                 <td>${totalGarfunkel}€</td>
@@ -144,11 +149,35 @@ console.log(data)
         }
         totalDuPanier.innerHTML=`
         <tr class="table-success"> 
+            <td></td>
             <td>Prix total : </td>
             <td></td>
             <td>${totalPanier}€</td>
         </tr>
         `
+//let tableau = document.getElementById('container_panier');
+//tableau.deleteRow(1);
+
+function removeQte(){
+    let boutonRemove = document.querySelector('.remove');
+    let produitSession = localStorage.getItem('nombrePanier');
+    console.log(produitSession);
+    boutonRemove.addEventListener('click', () => {
+        lesArticlesArnold-=1;
+        produitSession-=1;
+        console.log(produitSession);
+        //Valeur de l'input
+        let changeArnold = document.querySelector('.changeArnold');
+        changeArnold.value = lesArticlesArnold;
+        //Valeur de l'icone panier
+        document.querySelector('#span_panier').textContent= produitSession;
+        //Suprrimer un article en question du localstorage
+        let panierStorage = localStorage.getItem('panierClient');
+        
+    })
+}
+removeQte();
+
     });   
 
 
