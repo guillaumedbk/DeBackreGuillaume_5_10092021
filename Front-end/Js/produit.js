@@ -17,8 +17,7 @@ function getArticle(){
        //AJOUT AU PANIER
        bouton.addEventListener('click', () => {
         let initPanier = JSON.parse(localStorage.getItem("panierClient"));
-
-      
+        
         let idPanier = JSON.parse(localStorage.getItem(data._id))
         //Vérifier si le panier existe déjà
         if(localStorage.getItem('panierClient')){
@@ -26,19 +25,16 @@ function getArticle(){
             initPanier.push(data._id);
             localStorage.setItem("panierClient", JSON.stringify(initPanier));
 
-            /*
-            let id = localStorage.getItem(data._id);
-            id++;
-            localStorage.setItem(data._id, id)
-          */
-          
         //Si il n'existe pas, initialisation du panier
         }else{
             //Tableau qui comprendra tous les objets
             let initPanier = [];
+            initPanier.push(data._id);
             localStorage.setItem("panierClient", JSON.stringify(initPanier));
         }
+        auChargement2();
        })
+       
        
        let nomProduit = data.name;
        let descriptionProduit = data.description;
@@ -67,31 +63,8 @@ getArticle(idDuProduit);
 //NOMBRE D'AJOUT AU PANIER
 let bouton = document.querySelector('#ajout_panier');
 
-bouton.addEventListener('click', () => {
-    nombrePanier();
-})
-function nombrePanier(produit){
-    
-    let produitSession = localStorage.getItem('nombrePanier');
-    localStorage.setItem('nombrePanier', 1);
-    produitSession = parseInt(produitSession);
-    
-    if(produitSession){
-        localStorage.setItem('nombrePanier', produitSession + 1);
-        document.querySelector('#span_panier').textContent = produitSession + 1;
-    }else{
-        localStorage.setItem('nombreProduits', 1);
-        document.querySelector('#span_panier').textContent= 1;
-    } 
-  
+function auChargement2(){
+    let produitSession1 = JSON.parse(localStorage.getItem('panierClient'));
+    let produitSession2 = produitSession1.length;
+        document.querySelector('#span_panier').textContent = produitSession2;  
 }
-//Empecher la réiniatialisation du nombre de pdts dans le panier au chargement
-function auChargement(){
-    let produitSession = localStorage.getItem('nombrePanier');
-
-    if(produitSession){
-        document.querySelector('#span_panier').textContent = produitSession;
-        
-    }
-}
-auChargement();

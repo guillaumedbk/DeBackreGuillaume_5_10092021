@@ -7,8 +7,12 @@ function fetchApi (){
         }
     })
     .then(function(data) {
+        let containerPanier = document.getElementById("container_panier");
+                containerPanier.innerHTML = ``
     console.log(data)
         afficheLePanier(data);
+        auChargement2();
+        
     })
     .catch(function(err) {
         // Une erreur est survenue
@@ -22,39 +26,71 @@ function afficheLePanier(data){
         for (let teddy of data) {
                     
             if(monPanier.includes(teddy._id)){
-                //APPELER LA FONCTION affichePanier()
+                //APPEL DE LA FONCTION COUNT
+                //countTeddies(teddy._id);
+
+                //APPEL DE LA FONCTION affichePanier()
                 let containerPanier = document.getElementById("container_panier");
                 containerPanier.innerHTML += `
                 <tr class="table-light"> 
-                    <td> <button class="remove btn btn-danger" type="button"><i class="fas fa-minus-circle"></i></button></td>
+                <td> <button class="remove btn btn-danger" id="${teddy._id}" type="button"><i class="fas fa-minus-circle"></i></button></td>
                     <td>Ours : ${teddy.name} </td>
-                    <td></td>
-                    <td>${teddy.price/100}€</td>
+                    <td>Quantité : <input type="number" value="${countTeddies(teddy._id)}" id="listenQte" onClick="changed();"></input></td>
+                    <td>${(teddy.price/100)*countTeddies(teddy._id)}€</td>
                 </tr>
             `
+           
             }
+            changed()
+            remove()
+           
         }
-
 }
-/*
+//Modification dynamique de la quantité dans le panier
+function changed(){
+    
+}
+
+
+
+
+//Suppression des éléments au clic
+function remove(){
+    let boutonRemove = document.querySelectorAll('.remove');
+    let monPanier = JSON.parse(localStorage.getItem("panierClient"));
+    boutonRemove.forEach(element => {
+        element.addEventListener('click', () => {
+            let teddyid = element.getAttribute("id");
+            console.log(teddyid);
+                let filtre = monPanier.filter(item => item != teddyid);
+              
+                localStorage.setItem('panierClient', JSON.stringify(filtre))
+                console.log(filtre);
+                fetchApi();
+        })
+    });
+}
+
+
 //Compter le nombre d'id d'un element
-function countTeddies(idDuPanier){
-    for (ids of monPanier){
-        
+function countTeddies(id){
+    let monPanier = JSON.parse(localStorage.getItem("panierClient"));
+
+    let qteTeddies = {};
+    for(let i=0; i<monPanier.length; i++){
+        let iteration = monPanier[i];
+        qteTeddies[iteration] = qteTeddies[iteration] ? qteTeddies[iteration] +1 :1;
     }
+    //return(qteTeddies.id);
+    return(qteTeddies[id])
 }
-*/
 
 
-
-//Empecher la réiniatialisation du nombre de pdts dans le panier au chargement
-function auChargement(){
-    let produitSession = localStorage.getItem('nombrePanier');
-    if(produitSession){
-        document.querySelector('#span_panier').textContent = produitSession;  
-    }
+function auChargement2(){
+    let produitSession1 = JSON.parse(localStorage.getItem('panierClient'));
+    let produitSession2 = produitSession1.length;
+        document.querySelector('#span_panier').textContent = produitSession2;  
 }
-auChargement();
 
 
 function ajoutPanier(){
