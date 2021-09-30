@@ -44,8 +44,12 @@ fetch("http://localhost:3000/api/teddies")
 
 
 
-
-
-
+//Nombre de produit dans le panier
+    function auChargement2(){
+        let produitSession1 = JSON.parse(localStorage.getItem('panierClient'));
+        let produitSession2 = produitSession1.length;
+            document.querySelector('#span_panier').textContent = produitSession2;  
+    }
+auChargement2();
 
 

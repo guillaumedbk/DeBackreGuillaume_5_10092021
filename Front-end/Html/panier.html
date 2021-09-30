@@ -42,26 +42,71 @@
         </header>
 
         <main>
-            <table class="table">
-                <thead class="table-dark">
-                    <tr>
-                        <td>Supprimer</td>
-                        <td>Produit</td>
-                        <td>Quantité</td>
-                        <td>Prix</td>
-                    </tr>
-                </thead>
+            <div class="container mt-5">
+                <div class="d-flex justify-content-center">
+                    <h2 class="h3">Récapitulatif de votre panier</h2>
+                </div>
+                <table class="table ">
+                    <thead class="table-dark">
+                        <tr>
+                            <td>Supprimer</td>
+                            <td>Produit</td>
+                            <td>Quantité</td>
+                            <td>Prix</td>
+                        </tr>
+                    </thead>
 
-                <tbody id="container_panier" >
+                    <tbody id="container_panier" >
 
-                </tbody>
+                    </tbody>
 
-                <tfoot id="total_panier">
+                    <tfoot id="total_panier">
 
-                </tfoot>
-            </table>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="container mt-5">
+
+                <div class="d-flex justify-content-center">
+                    <h2 class="h3">Veuillez renseigner les champs ci-dessous</h2>
+                </div>
             
-        </main>
+            <!--Formulaire-->
+            <form method="POST" action="../Js/fonctions.js" class="row g-3">
+                <div class="col-md-6">
+                    <label for="firstName" class="form-label">Prénom</label>
+                    <input type="text" class="form-control" id="firstName">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="secondName" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="secondName">
+                  </div>
+                <div class="col-md-6">
+                  <label for="inputEmail" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="inputEmail">
+                </div>
+                
+                <div class="col-md-6">
+                  <label for="inputCity" class="form-label">Ville</label>
+                  <input type="text" class="form-control" id="inputCity">
+                </div>
+                <div class="col-md-12">
+                    <label for="inputStreet" class="form-label">Adresse</label>
+                    <input type="text" class="form-control" id="inputStreet">
+                  </div>
+                <div class="col-12">
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary w-25 p-3" id="confirmation">Confirmer</button>
+                    </div>
+                </div>
+                
+                </div>
+               
+              </form>
+
+            </div>
+            </main>
         
         <!--CODE JS-->
         <script src="../Js/fonctions.js"></script>
