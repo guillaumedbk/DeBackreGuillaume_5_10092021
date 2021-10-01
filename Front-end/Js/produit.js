@@ -15,6 +15,7 @@ function getArticle(){
    })
    .then(function(data) {
        //AJOUT AU PANIER
+       
        bouton.addEventListener('click', () => {
         let initPanier = JSON.parse(localStorage.getItem("panierClient"));
         
@@ -68,3 +69,23 @@ function auChargement2(){
     let produitSession2 = produitSession1.length;
         document.querySelector('#span_panier').textContent = produitSession2;  
 }
+
+function ajoutPanier(){
+    bouton.addEventListener('click', () => {
+        let initPanier = JSON.parse(localStorage.getItem("panierClient"));
+        
+        let idPanier = JSON.parse(localStorage.getItem(data._id))
+        //Vérifier si le panier existe déjà
+        if(localStorage.getItem('panierClient')){
+            //Pousser les éléments dans le tableau initPanier qui comprend tous les produits
+            initPanier.push(data._id);
+            localStorage.setItem("panierClient", JSON.stringify(initPanier));
+    
+        //Si il n'existe pas, initialisation du panier
+        }else{
+            //Tableau qui comprendra tous les objets
+            let initPanier = [];
+            initPanier.push(data._id);
+            localStorage.setItem("panierClient", JSON.stringify(initPanier));
+        }
+    })}

@@ -50,3 +50,12 @@ table{
   border: 1px solid orange;
  
 }
+
+#recapitulatif{
+  background-color: #f7941d;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  width:50%;
+  padding: 1.5em;
+}

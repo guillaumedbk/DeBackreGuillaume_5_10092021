@@ -42,7 +42,7 @@
         </header>
 
         <main>
-            <div class="container mt-5">
+            <div class="container mt-5" id="main">
                 <div class="d-flex justify-content-center">
                     <h2 class="h3">Récapitulatif de votre panier</h2>
                 </div>
@@ -68,12 +68,12 @@
             </div>
 
             <div class="container mt-5">
-
-                <div class="d-flex justify-content-center">
-                    <h2 class="h3 mb-3">Veuillez renseigner les champs ci-dessous</h2>
-                </div>
             
-                <form class="row g-3" onsubmit="sendToApi()">
+                <form class="row g-3" onsubmit="sendToApi()" id="formulaire">
+                    <div class="d-flex justify-content-center">
+                        <h2 class="h3 mb-3">Veuillez renseigner les champs ci-dessous</h2>
+                    </div>
+
                     <div class="col-md-6">
                       <label for="inputFirstName">Prénom</label>
                       <input type="text" class="form-control" id="inputFirstName" placeholder="Prénom" required>

@@ -1,5 +1,3 @@
-//const e = require("express");
-
 //Connexion base de données
 function fetchApi (){
     fetch("http://localhost:3000/api/teddies")
@@ -27,6 +25,13 @@ fetchApi();
 function afficheLePanier(data){
     total=[];
     let monPanier = JSON.parse(localStorage.getItem("panierClient"));
+
+    if(monPanier == ""){
+        let main = document.getElementById('main');
+        main.innerHTML=`<h2>Votre panier est vide</h2>`
+        let formulaire = document.getElementById('formulaire');
+        formulaire.innerHTML=``;
+    }else{
         for (let teddy of data) {
                    
             if(monPanier.includes(teddy._id)){
@@ -50,8 +55,10 @@ function afficheLePanier(data){
             remove()
             
             changed3() 
-        }
-            
+    }
+    }
+       
+    
 }
 //Tableau vide pour stocker les prix
 let total = [];
@@ -201,6 +208,7 @@ function sendToApi(){
     .then((response) => {
      console.log(response)
      localStorage.setItem("orderConfirmation", JSON.stringify(response));
+     window.location="./confirmation.html"
      })
       .catch(function(error) {
         alert('Il y a eu un problème avec l\'opération fetch: ' + error.message);
