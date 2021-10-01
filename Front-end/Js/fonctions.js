@@ -1,3 +1,5 @@
+//const e = require("express");
+
 //Connexion base de données
 function fetchApi (){
     fetch("http://localhost:3000/api/teddies")
@@ -37,6 +39,7 @@ function afficheLePanier(data){
                 <tr class="table-light"> 
                 <td> <button class="remove btn btn-danger" id="${teddy._id}" type="button"><i class="fas fa-minus-circle"></i></button></td>
                     <td>Ours : ${teddy.name} </td>
+                    <td><img src="${teddy.imageUrl}" width="100px"> </img></td>
                     <td>Quantité : <input type="number" id="${teddy._id}" value="${countTeddies(teddy._id)}" class="listenQte"></input></td>
                     <td>${(teddy.price/100)*countTeddies(teddy._id)}€</td>
                 </tr>
@@ -76,6 +79,7 @@ function showPrice(){
                         <td> Prix total:</td>
                         <td></td>
                         <td></td>
+                        <td></td>
                         <td>${somme()}€</td>
             </tr>
         `
@@ -110,7 +114,6 @@ function changed3(){
             
         })
     })
-    console.log(monPanier)
 }
 
 //Suppression des éléments au clic
@@ -162,22 +165,45 @@ function ajoutPanier(){
             localStorage.setItem("panierClient", JSON.stringify(initPanier));
         }
 }
-/*
-document.getElementById('confirmation').addEventListener('click', () => {
-    let firstName = document.getElementById('firstName').value;
-    let secondName = document.getElementById('secondName').value;
-    let inputEmail = document.getElementById('inputEmail').value;
-    let inputCity = document.getElementById('inputCity').value;
-    let inputStreet = document.getElementById('inputStreet').value;
 
-    let contact =
+
+// Récupération Formulaire
+const getFormFirstName = document.getElementById("inputFirstName");
+const getFormName = document.getElementById("inputName");
+const getFormEmail = document.getElementById("inputEmail");
+const getFormAdress1 = document.getElementById("inputAddress");
+const getFormCity = document.getElementById("inputCity");
+const getSubmitButton = document.getElementById("submitButton");
+
+function sendToApi(){
+    let contact = 
     {
-        firstName: document.getElementById('firstName').value,
-        secondName: document.getElementById('secondName').value,
-        inputEmail: document.getElementById('inputEmail').value,
-        inputCity: document.getElementById('inputCity').value,
-        inputStreet: document.getElementById('inputStreet').value
+        firstName: getFormFirstName.value,
+        lastName: getFormName.value,
+        address: getFormAdress1.value,
+        city : getFormCity.value,
+        email: getFormEmail.value,
     }
-   
-})
-*/
+    let products=JSON.parse(localStorage.getItem("panierClient"));
+
+    let body = {contact, products}
+
+    fetch("http://localhost:3000/api/teddies/order", {
+        method: 'POST',
+        headers: { 
+        'Accept': 'application/json', 
+        'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify(body)
+    })
+   .then(response => response.json())
+    
+    .then((response) => {
+     console.log(response)
+     localStorage.setItem("orderConfirmation", JSON.stringify(response));
+     })
+      .catch(function(error) {
+        alert('Il y a eu un problème avec l\'opération fetch: ' + error.message);
+      });
+ }
+ 
