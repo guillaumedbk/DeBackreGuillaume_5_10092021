@@ -8,7 +8,7 @@ let panier = localStorage.getItem("panierClient");
 function getArticleId(){
     return new URL(location.href).searchParams.get("id");
 }
-getArticle(idDuProduit);
+getArticle();
 //Fonction principale qui fetch et affiche les produits
 function getArticle(){
     return fetch(urlProduit) 

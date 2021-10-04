@@ -42,7 +42,7 @@ function affichageDesCards(data){
                     <a href="http://127.0.0.1:5500/Front-end/Html/produit.html?id=${idDuProduit}" ><img class="card-img-top" id="imageCard" src="${imageProduit}" alt=""></a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#" id="titre">${nomProduit}</a>
+                                ${nomProduit}
                             </h4>
                             <p class="card-text description" id="description">${descriptionProduit}</p>
                             <p class="card-text price" id="price">${prixProduit}€</p>

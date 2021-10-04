@@ -58,20 +58,6 @@ function afficheLePanier(data){
     } 
 }
 
-//CREATION DU PANIER DANS LE LOCAL STORAGE 
-function ajoutPanier(){
-    let initPanier = JSON.parse(localStorage.getItem("panierClient"));
-        if(localStorage.getItem('panierClient')){
-            //Si present - ajout des données au panier
-            initPanier.push(data_id);
-            localStorage.setItem("panierClient", JSON.stringify(initPanier));
-        }else{
-            //Si vide - initialisation du panier dans le local storage
-            let initPanier = [];
-            localStorage.setItem("panierClient", JSON.stringify(initPanier));
-        }
-}
-
 //Tableau vide pour stocker les prix des produits du panier
 let total = [];
 
