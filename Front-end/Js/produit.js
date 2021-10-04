@@ -11,7 +11,7 @@ function getArticleId(){
 getArticle(idDuProduit);
 //Fonction principale qui fetch et affiche les produits
 function getArticle(){
-    return fetch(urlProduit)
+    return fetch(urlProduit) 
     .then(function(reponse) {
        if (reponse.ok) {
        return reponse.json();
@@ -21,10 +21,11 @@ function getArticle(){
        //Affichage du contenu de la page produit
        afficheProduit(data) 
        //Affichage du span panier avec le nombre d'article dans le panier
-        nombrePanier();
+       nombrePanier();
        //Ajout au panier au clic 
        bouton.addEventListener('click', () => {
         ajoutPanier(data)
+        nombrePanier();
        })   
    })
    .catch(function(err) {

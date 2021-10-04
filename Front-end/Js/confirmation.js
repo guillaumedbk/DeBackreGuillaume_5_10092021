@@ -21,12 +21,11 @@ let recap = document.getElementById('recapitulatif').innerHTML=`
 </br>À l'adresse suivante : ${adresse} à ${ville} </p>
 `
 
-//Nombre de produit dans le panier
-function auChargement2(){
+//NOMBRE D'ARTICLES DANS LE PANIER
+function nombrePanier(){
     let produitSession1 = JSON.parse(localStorage.getItem('panierClient'));
     let produitSession2 = produitSession1.length;
         document.querySelector('#span_panier').textContent = produitSession2;  
 }
-auChargement2();
-
+nombrePanier()
 
