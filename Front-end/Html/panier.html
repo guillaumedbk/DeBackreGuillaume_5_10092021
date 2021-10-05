@@ -69,7 +69,7 @@
 
             <div class="container mt-5">
             
-                <form class="row g-3" onsubmit="sendToApi()" id="formulaire">
+                <form class="row g-3" onsubmit="checkForm(event)" id="formulaire">
                     <div class="d-flex justify-content-center">
                         <h2 class="h3 mb-3">Veuillez renseigner les champs ci-dessous</h2>
                     </div>
@@ -89,7 +89,6 @@
                       <label for="inputEmail">Email</label>
                       <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
                     </div>
-                
 
                   <div class="col-md-6">
                     <label for="inputAddress">Addresse</label>
@@ -107,6 +106,14 @@
                   </div>
                   
                 </form>
+                <hr>
+                <span style="color: red;" id="champsIncorrects"></span></br>
+                <span style="color: red;" id="noFirstName"></span></br>
+                <span style="color: red;" id="noGoodMail"></span></br>
+                <span style="color: red;" id="noName"></span></br>
+                <span style="color: red;" id="n"></span></br>
+
+                <div id="post"></div>
             </div>
     <!--FOOTER-->
     <div class="mt-5">

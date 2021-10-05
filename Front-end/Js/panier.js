@@ -169,34 +169,100 @@ const getSubmitButton = document.getElementById("submitButton");
 
 //Envoie des données du formulaire 
 function sendToApi(){
-    let contact = 
-    {
-        firstName: getFormFirstName.value,
-        lastName: getFormName.value,
-        address: getFormAdress1.value,
-        city : getFormCity.value,
-        email: getFormEmail.value,
+
+        let contact = 
+        {
+            firstName: getFormFirstName.value,
+            lastName: getFormName.value,
+            address: getFormAdress1.value,
+            city : getFormCity.value,
+            email: getFormEmail.value,
+        }
+        let products=JSON.parse(localStorage.getItem("panierClient"));
+    
+        let body = {contact, products} //Objet avec tous les éléments
+    
+        fetch("http://localhost:3000/api/teddies/order", {
+            method: 'POST',
+            headers: { 
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify(body) 
+        })
+       .then(response => response.json())
+        .then((response) => {
+         console.log(response)
+         localStorage.setItem("orderConfirmation", JSON.stringify(response)); //Envoi la réponse de l'api dans le locastorage
+         window.location="./confirmation.html" //Renvoi à la page confirmation de commande
+         })
+          .catch(function(error) {
+            alert('Il y a eu un problème avec l\'opération fetch: ' + error.message);
+          });
     }
-    let products=JSON.parse(localStorage.getItem("panierClient"));
+ 
 
-    let body = {contact, products} //Objet avec tous les éléments
+ 
+ //REGEX
+ const caracteresValid = /^[a-zA-Z\-]+$/;
+ const emailReg = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
 
-    fetch("http://localhost:3000/api/teddies/order", {
-        method: 'POST',
-        headers: { 
-        'Accept': 'application/json', 
-        'Content-Type': 'application/json' 
-        },
-        body: JSON.stringify(body) 
-    })
-   .then(response => response.json())
-    .then((response) => {
-     console.log(response)
-     localStorage.setItem("orderConfirmation", JSON.stringify(response)); //Envoi la réponse de l'api dans le locastorage
-     window.location="./confirmation.html" //Renvoi à la page confirmation de commande
-     })
-      .catch(function(error) {
-        alert('Il y a eu un problème avec l\'opération fetch: ' + error.message);
-      });
+regexName = false;
+regexFirstName = false;
+regexMail= false;
+let noFirstName = document.getElementById('noFirstName');
+let testForm = document.getElementById('submitButton')
+let inputFirstName = document.getElementById('inputFirstName')
+let inputName = document.getElementById('inputName')
+let inputMail = document.getElementById('inputEmail')
+let noGoodMail = document.getElementById('noGoodMail')
+let postData = document.getElementById('post')
+
+let formulaire = document.getElementById('formulaire');
+formulaire.addEventListener('input', checkForm) 
+
+function checkForm(){
+    //controle prénom
+    if(!caracteresValid.test(inputFirstName.value)){		
+        inputFirstName.classList.add("is-invalid")
+		regexFirstName = false;
+        noFirstName.innerHTML = 'Merci d\'inscrire un nom valide'
+	} else {
+        regexFirstName = true;
+        inputFirstName.classList.add("is-valid")
+        noFirstName.innerHTML = ''
+    }
+    //controle nom
+    if(!caracteresValid.test(inputName.value)){		
+		noName.innerHTML = 'Merci d\'inscrire un nom valide'
+        inputName.classList.add("is-invalid")
+        regexName = false;
+	} else {
+        inputName.classList.remove("is-invalid")
+        inputName.classList.add("is-valid")
+        noName.innerHTML = ''
+        regexName= true;
+    }
+	// controle du mail
+	if(!emailReg.test(inputMail.value)){		
+		noGoodMail.innerHTML = 'Merci d\'inscrire un mail valide'
+        inputMail.classList.add("is-invalid")
+        regexMail= false;
+	} else {
+        inputMail.classList.remove("is-invalid")
+        inputMail.classList.add("is-valid")
+        noGoodMail.innerHTML = ''
+        regexMail= true;
+    }
+}
+testForm.addEventListener('click', checkFinal) 
+
+function checkFinal(event){
+    //Contrôle des valeurs
+    if(regexName == false || regexFirstName == false || regexMail == false){
+     event.preventDefault();
+ }else{
+     sendToApi();
+ }
  }
  
