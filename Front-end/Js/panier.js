@@ -13,6 +13,7 @@ function fetchApi (){
         afficheLePanier(data);
         calculatePrice(data);
         nombrePanier();
+        coloris(data)
     })
     .catch(function(err) {
         // Une erreur est survenue
@@ -27,7 +28,7 @@ function afficheLePanier(data){
     let monPanier = JSON.parse(localStorage.getItem("panierClient"));
     
     //VERIFIER SI LE PANIER EST VIDE OU NON
-    if(monPanier == ""){
+    if(!monPanier){
         //MENTIONNER QUE LE PANIER EST VIDE
         let main = document.getElementById('main');
         main.innerHTML=`<h2>Votre panier est vide</h2>`
@@ -36,8 +37,14 @@ function afficheLePanier(data){
     }else{
         //AFFICHER LES DONNEES DU PANIER
         for (let teddy of data) {
+    
             //BOUCLER SUR LE PANIER ET AFFICHER LES ELEMENTS CORRESPONDANT
             if(monPanier.includes(teddy._id)){
+                
+                let mesCouleurs = JSON.parse(localStorage.getItem(teddy._id));
+                mesCouleurs.reduce(el => el = el.value != el)
+                console.log(mesCouleurs)
+
                 let containerPanier = document.getElementById("container_panier");
                 containerPanier.innerHTML += `
                 <tr class="table-light"> 
@@ -45,6 +52,7 @@ function afficheLePanier(data){
                     <td>Ours : ${teddy.name} </td>
                     <td><img src="${teddy.imageUrl}" width="100px"> </img></td>
                     <td>Quantité : <input type="number" id="${teddy._id}" value="${countTeddies(teddy._id)}" class="listenQte"></input></td>
+                    <td>${mesCouleurs}</td>
                     <td>${(teddy.price/100)*countTeddies(teddy._id)}€</td>
                 </tr>
                 
@@ -86,6 +94,7 @@ function showPrice(){
                         <td></td>
                         <td></td>
                         <td></td>
+                        <td></td>
                         <td>${somme()}€</td>
             </tr>
         `
@@ -118,8 +127,7 @@ function  changeQte(){
             for(i=0;i<newQte;i++){
                 panierSansOursEnQuestion.push(teddyid); //Ajoute la nouvelle quantité de l'ours en question 
             }
-            localStorage.setItem('panierClient', JSON.stringify(panierSansOursEnQuestion)); //Panier à jour dans le localstorage
-            
+            localStorage.setItem('panierClient', JSON.stringify(panierSansOursEnQuestion)); //Panier à jour dans le localstorage  
         })
     })
 }
@@ -266,3 +274,6 @@ function checkFinal(event){
  }
  }
  
+
+
+

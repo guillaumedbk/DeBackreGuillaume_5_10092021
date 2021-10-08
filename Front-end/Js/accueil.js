@@ -9,12 +9,13 @@ function fetchApi(){
     .then(function(data) {
         console.log(data);
         //Nombre d'articles dans le panier
-        nombrePanier()
+         nombrePanier()
         //For pour chaque élément du tableau
         affichageDesCards(data)
     })
     .catch(function(err) {
         console.log('Une erreur est survenue') 
+        console.log(err)
     });
 }
 fetchApi();
@@ -22,8 +23,13 @@ fetchApi();
 //NOMBRE D'ARTICLES DANS LE PANIER
 function nombrePanier(){
     let produitSession1 = JSON.parse(localStorage.getItem('panierClient'));
-    let produitSession2 = produitSession1.length;
+    if(!produitSession1){
+        console.log("votre panier est vide");
+        document.querySelector('#span_panier').textContent =0; 
+    }else{
+        let produitSession2 = produitSession1.length;
         document.querySelector('#span_panier').textContent = produitSession2;  
+    } 
 }
 
 //For pour chaque élément du tableau

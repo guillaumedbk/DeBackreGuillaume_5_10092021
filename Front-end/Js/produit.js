@@ -4,6 +4,9 @@ const idDuProduit = getArticleId();
 const urlProduit = "http://localhost:3000/api/teddies".concat('/', idDuProduit);
 let panier = localStorage.getItem("panierClient");
 
+
+let couleur = [];
+localStorage.setItem(idDuProduit, JSON.stringify(couleur));
 //Récupérer l'id de l'article
 function getArticleId(){
     return new URL(location.href).searchParams.get("id");
@@ -74,6 +77,37 @@ function afficheProduit(data){
     let prix = document.getElementById('prix').textContent= "".concat(prixProduit/100, "€");
 
      for(let colori of data.colors){
-         document.getElementById('listeUl').innerHTML += ` <li>${colori}</li>  `
+         document.getElementById('listeUl').innerHTML += `
+         <option value="${colori}">${colori}</option> `
         }
+
+        bouton.addEventListener('click', () =>{
+            let initPanier = JSON.parse(localStorage.getItem("panierClient"));
+        
+            let idPanier = JSON.parse(localStorage.getItem(data._id))
+        //Vérifier si le panier existe déjà
+        if(localStorage.getItem('panierClient')){
+            //Pousser les éléments dans le tableau initPanier qui comprend tous les produits
+            initPanier.push(data._id);
+            localStorage.setItem("panierClient", JSON.stringify(initPanier));
+    
+        //Si il n'existe pas, initialisation du panier
+        }else{
+            //Tableau qui comprendra tous les objets
+            let initPanier = [];
+            initPanier.push(data._id);
+            localStorage.setItem("panierClient", JSON.stringify(initPanier));
+        }
+        
+        //COULEURS
+        let liste = document.getElementById('listeUl');
+        let valeurSelect = liste.options[liste.selectedIndex].value;
+        let couleurStorage = JSON.parse(localStorage.getItem(data._id));
+        
+        if (couleurStorage.indexOf(valeurSelect) === -1) {
+            couleurStorage.push(valeurSelect);
+            localStorage.setItem(data._id, JSON.stringify(couleurStorage))
+           }
+         })
+        
 }
